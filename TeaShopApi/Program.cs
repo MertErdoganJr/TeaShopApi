@@ -3,6 +3,7 @@ using TeaShopApi.BusinessLayer.Concrete;
 using TeaShopApi.DataAccessLayer.Abstract;
 using TeaShopApi.DataAccessLayer.Context;
 using TeaShopApi.DataAccessLayer.EntityFramework;
+using TeaShopApi.EntityLayer.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IDrinkDal, EfDrinkDal>();
 builder.Services.AddScoped<IDrinkService, DrinkManager>();
+
+builder.Services.AddScoped<IQuestionDal, EfQuestionDal>();
+builder.Services.AddScoped<IQuestionService, QuestionManager>();
 
 builder.Services.AddDbContext<TeaContext>();
 

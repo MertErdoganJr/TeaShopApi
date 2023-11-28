@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TeaShopApi.BusinessLayer.Abstract;
 using TeaShopApi.DtosLayer.DrinkDtos;
+using TeaShopApi.DtosLayer.QuestionDtos;
 using TeaShopApi.EntityLayer.Concrete;
 
 namespace TeaShopApi.Controllers
@@ -35,6 +36,35 @@ namespace TeaShopApi.Controllers
             };
             _drinkService.TInsert(drink);
             return Ok("İçeceğiniz Eklendi");
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteDrink(int id)
+        {
+            var value = _drinkService.TGetById(id);
+            _drinkService.TDelete(value);
+            return Ok("İçerik Silindi");
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetDrink(int id)
+        {
+            var values = _drinkService.TGetById(id);
+            return Ok(values);
+        }
+
+        [HttpPut]
+        public IActionResult UpdateDrink(UpdateDrinkDto updateDrinkDto)
+        {
+            Drink updatedDrink = new Drink()
+            {
+                DrinkID = updateDrinkDto.DrinkID,
+                DrinkName = updateDrinkDto.DrinkName,
+                DrinkImageUrl = updateDrinkDto.DrinkImageUrl,
+                DrinkPrice= updateDrinkDto.DrinkPrice
+            };
+            _drinkService.TUpdate(updatedDrink);
+            return Ok("Güncelleme İşlemi Yapıldı");
         }
     }
 }
