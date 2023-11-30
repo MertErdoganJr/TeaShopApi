@@ -19,5 +19,15 @@ namespace TeaShopApi.WebUI.Areas.Admin.Controllers
 		{
 			return PartialView();
 		}
+
+		public PartialViewResult PartialNavbar()
+		{
+			return PartialView();
+		}
+
+		public PartialViewResult PartialContent()
+		{
+			return PartialView();
+		}
 	}
 }
