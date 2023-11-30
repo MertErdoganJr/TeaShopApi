@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MessagePack;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 using TeaShopApi.WebUI.Dtos.DrinkDtos;
@@ -6,7 +7,7 @@ using TeaShopApi.WebUI.Dtos.DrinkDtos;
 namespace TeaShopApi.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Route("[area]/[controller]/[action]")]
+    [Route("[area]/[controller]/[action]/{id?}")]
     public class DrinkController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -59,5 +60,34 @@ namespace TeaShopApi.WebUI.Areas.Admin.Controllers
             }
             return View();
         }
-    }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateDrink(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync("https://localhost:7069/api/Drinks/" + id);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<UpdateDrinkDto>(jsonData);
+                return View(values);
+            }
+            return View();
+        }
+
+        [HttpPost]
+		public async Task<IActionResult> UpdateDrink(UpdateDrinkDto updateDrinkDto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(updateDrinkDto);
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PutAsync("https://localhost:7069/api/Drinks/", stringContent);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+	}
 }
