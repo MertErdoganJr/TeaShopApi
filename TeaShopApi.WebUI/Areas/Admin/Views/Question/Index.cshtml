@@ -1,17 +1,16 @@
-﻿@model List<TeaShopApi.WebUI.Dtos.DrinkDtos.ResultDrinkDto>
+﻿@model List<ResultQuestionDto>
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+	int count = 0;
 }
 
 <div class="row">
-	<!-- [ sample-page ] start -->
 	<div class="col-sm-12">
 		<div class="card">
-
 			<div class="card-header">
-				<h5>İçecek İşlemleri</h5>
+				<h5>Soru Cevap İşlemleri</h5>
 				<div class="card-header-right">
 					<div class="btn-group card-option">
 						<button type="button" class="btn dropdown-toggle btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,26 +30,27 @@
 					<table class="table tabletable-bordered">
 						<tr>
 							<th>#</th>
-							<th>İçecek Adı</th>
-							<th>İçecek Fiyatı</th>							
-							<th>Sil</th>							
-							<th>Güncelle</th>							
+							<th>Soru</th>
+							<th>Cevap</th>
+							<th>Sil</th>
+							<th>Güncelle</th>
 						</tr>
-						@foreach(var item in Model)
+						@foreach (var item in Model)
 						{
+							count++;
 							<tr>
-								<td>@item.drinkID</td>
-								<td>@item.drinkName</td>
-								<td>@item.drinkPrice</td>
-								<td><a href="/Admin/Drink/DeleteDrink/@item.drinkID" class="btn-sm btn-outline-danger">Sil</a></td>
-								<td><a href="/Admin/Drink/UpdateDrink/@item.drinkID" class="btn-sm btn-outline-success">Güncelle</a></td>
+								<td>@count</td>
+								<td>@item.QuestionDetail</td>
+								<td>@item.AnswerDetail</td>
+								<td><a href="/Admin/Question/DeleteQuestion/@item.QuestionID" class="btn-sm btn-outline-danger">Sil</a></td>
+								<td><a href="/Admin/Question/UpdateQuestion/@item.QuestionID" class="btn-sm btn-outline-success">Güncelle</a></td>
 							</tr>
 						}
 					</table>
-					<a href="#" class="btn btn-outline-primary">Yeni İçecek Girişi</a>
+					<a href="/Admin/Question/CreateQuestion/" class="btn btn-outline-primary">Yeni Soru Girişi</a>
 				</p>
 			</div>
 		</div>
 	</div>
-	<!-- [ sample-page ] end -->
 </div>
+
