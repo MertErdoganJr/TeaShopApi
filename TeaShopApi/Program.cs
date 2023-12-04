@@ -15,6 +15,15 @@ builder.Services.AddScoped<IDrinkService, DrinkManager>();
 builder.Services.AddScoped<IQuestionDal, EfQuestionDal>();
 builder.Services.AddScoped<IQuestionService, QuestionManager>();
 
+builder.Services.AddScoped<IAboutUsDal, EfAboutUsDal>();
+builder.Services.AddScoped<IAboutUsService, AboutUsManager>();
+
+builder.Services.AddScoped<IProductDal, EfProductDal>();
+builder.Services.AddScoped<IProductService, ProductManager>();
+
+builder.Services.AddScoped<IContactDal, EfContactDal>();
+builder.Services.AddScoped<IContactService, ContactManager>();
+
 builder.Services.AddDbContext<TeaContext>();
 
 builder.Services.AddControllers();

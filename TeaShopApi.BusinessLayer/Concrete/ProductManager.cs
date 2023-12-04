@@ -9,38 +9,38 @@ using TeaShopApi.EntityLayer.Concrete;
 
 namespace TeaShopApi.BusinessLayer.Concrete
 {
-    public class ProductManager : IContactService
+    public class ProductManager : IProductService
     {
-        private readonly IContactDal _contactDal;
+        private readonly IProductDal _productDal;
 
-        public ProductManager(IContactDal contactDal)
+        public ProductManager(IProductDal productDal)
         {
-            _contactDal = contactDal;
+            _productDal = productDal;
         }
 
-        public void TDelete(Contact entity)
+        public void TDelete(Product entity)
         {
-            _contactDal.Delete(entity);
+            _productDal.Delete(entity);
         }
 
-        public Contact TGetById(int id)
+        public Product TGetById(int id)
         {
-            return _contactDal.GetById(id);
+            return _productDal.GetById(id);
         }
 
-        public List<Contact> TGetListAll()
+        public List<Product> TGetListAll()
         {
-            return _contactDal.GetListAll();
+            return _productDal.GetListAll();
         }
 
-        public void TInsert(Contact entity)
+        public void TInsert(Product entity)
         {
-            _contactDal.Insert(entity);
+            _productDal.Insert(entity);
         }
 
-        public void TUpdate(Contact entity)
+        public void TUpdate(Product entity)
         {
-            _contactDal.Update(entity);
+            _productDal.Update(entity);
         }
     }
 }

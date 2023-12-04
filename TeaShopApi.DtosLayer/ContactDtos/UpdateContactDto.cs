@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeaShopApi.DtosLayer.ContactDtos
 {
-    public class UpdateProdcutDto
+    public class UpdateContactDto
     {
         public int ContactID { get; set; }
         public string? Name { get; set; }

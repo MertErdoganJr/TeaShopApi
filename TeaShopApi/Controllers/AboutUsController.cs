@@ -51,5 +51,18 @@ namespace TeaShopApi.Controllers
             var value = _aboutUsService.TGetById(id);
             return Ok(value);
         }
+
+        [HttpPut]
+        public IActionResult UpdateAboutUs(UpdateAboutUsDto updateAboutUsDto)
+        {
+            AboutUs aboutUs = new AboutUs()
+            {
+                AboutUsID = updateAboutUsDto.AboutUsID,
+                Title= updateAboutUsDto.Title,
+                Description= updateAboutUsDto.Description
+            };
+            _aboutUsService.TUpdate(aboutUs);
+            return Ok("İçerik Güncellendi");
+        }
     }
 }
