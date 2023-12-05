@@ -24,6 +24,9 @@ builder.Services.AddScoped<IProductService, ProductManager>();
 builder.Services.AddScoped<IContactDal, EfContactDal>();
 builder.Services.AddScoped<IContactService, ContactManager>();
 
+builder.Services.AddScoped<IStatisticsDal, EfStatisticsDal>();
+builder.Services.AddScoped<IStatisticsService, IstatisticsManager>();
+
 builder.Services.AddDbContext<TeaContext>();
 
 builder.Services.AddControllers();
