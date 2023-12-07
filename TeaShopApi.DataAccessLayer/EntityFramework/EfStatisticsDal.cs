@@ -20,6 +20,7 @@ namespace TeaShopApi.DataAccessLayer.EntityFramework
         public decimal DrinkAVGPrice()
         {
             decimal value = _context.Drinks.Average(x=>x.DrinkPrice);
+            //value = Math.Round(value, 2);
             return value;
         }
 
